@@ -7,7 +7,7 @@ class Home extends Component{
 
     render() {
         return (
-            "Hello!"
+            "Hello! This is min's project"
 
         );
     }
