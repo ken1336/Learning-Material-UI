@@ -10,8 +10,6 @@ export default function Home() {
     console.log(array);
     const showArray = array.map(v=><span>{v+' '}</span>)
     
-    console.log(a())
-    console.log(a())
-    console.log(a())
+
   return <div>{}</div>;
 }
