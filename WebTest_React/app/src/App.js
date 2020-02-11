@@ -6,7 +6,7 @@ import Header from './Header';
 import Home from './routes/Home';
 import TestComponent from './routes/TestComponent';
 import IndexList from './routes/IndexList';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
