@@ -3,7 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import MinTodoListBox from '../component/MinTodoListBox'
-import MinCard from '../component/MinCard'
+import MinCard from '../component/MinItemCard'
+import { DndProvider } from 'react-dnd'
+import Backend from 'react-dnd-html5-backend'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,28 +30,33 @@ export default function Home() {
 
   return (
     <div className={classes.root}>
+      
       <Grid container spacing={3}>
         <Grid item xs>
+        <DndProvider backend={Backend}>
           <Paper className={classes.paper}>To do
-            <Grid item xs >
-              <MinCard />
-
-            </Grid>
-            <Grid item xs >
-              <MinCard />
-            </Grid>
+          
+          <MinTodoListBox id="toDo"/>
+          
+            
           </Paper>
+          </DndProvider>
         </Grid>
         <Grid item xs>
+        <DndProvider backend={Backend}>
           <Paper className={classes.paper}>In progress
-            <MinTodoListBox/>
+          
+          <MinTodoListBox id="inProgress"/>
+          
+            
           </Paper>
+          </DndProvider>
         </Grid>
         <Grid item xs>
-          <Paper className={classes.paper}>Done</Paper>
+          {/* <Paper className={classes.paper}>Done</Paper> */}
         </Grid>
       </Grid>
-
+      
     </div>
   );
 }
