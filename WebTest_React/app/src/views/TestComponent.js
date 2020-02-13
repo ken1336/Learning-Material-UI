@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import MinSwitch from '../component/MinSwitch';
-import MinButton from '../component/MinButton';
-import MinTable from '../component/MinTable';
+import MinSwitch from '../components/MinSwitch';
+import MinButton from '../components/MinButton'
+import MinTable from '../components/MinTable';
 
 
 

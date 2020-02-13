@@ -11,16 +11,17 @@ import MinAddItemDialog from "../components/MinAddItemDialog";
 const useStyles = makeStyles(theme => ({
   root: {
     margin: "10px",
-    flexGrow: 1
+    // flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: "center",
     backgroundColor: "#eeeeee",
     color: theme.palette.text.secondary,
     height: "800px",
-    width: "600px",
-    variant: "outlined"
+    
+    // variant: "outlined",
+    
   },
   button: {
     padding: theme.spacing(1)
@@ -33,7 +34,7 @@ export default function Home() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs>
+        <Grid item xs   >
           <DndProvider backend={Backend}>
             <Paper className={classes.paper}>
               To do
@@ -41,7 +42,7 @@ export default function Home() {
             </Paper>
           </DndProvider>
         </Grid>
-        <Grid item xs>
+        <Grid item xs  >
           <DndProvider backend={Backend}>
             <Paper className={classes.paper}>
               <Grid className={classes.test}>
@@ -55,8 +56,21 @@ export default function Home() {
             </Paper>
           </DndProvider>
         </Grid>
-        <Grid item xs>
-          {/* <Paper className={classes.paper}>Done</Paper> */}
+       
+        <Grid item xs  >
+          <DndProvider backend={Backend}>
+            <Paper className={classes.paper}>
+              <Grid className={classes.test}>
+                Done
+                
+              </Grid>
+              <Grid>
+                
+                <MinTodoListBox id="done" />
+              </Grid>
+            </Paper>
+          </DndProvider>
+        
         </Grid>
       </Grid>
     </div>

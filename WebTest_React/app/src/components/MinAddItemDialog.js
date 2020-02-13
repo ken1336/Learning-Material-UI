@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function AddItemDialog(){
+export default function AddItemDialog(props){
     const [open, setOpen] = useState(false);
     const [data, setData] = useState(
       {
@@ -25,6 +25,7 @@ export default function AddItemDialog(){
     }
     const handleInsertData = () =>{
       console.log(data)
+      props.addCard(data)
       
     }
     const handleClickOpen = () => {
@@ -47,10 +48,9 @@ export default function AddItemDialog(){
           </Button>
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-            <DialogContent>
+            <DialogContent style = {{width:"500px"}}>
               <DialogContentText >
-                To subscribe to this website, please enter your email address here. We will send updates
-                occasionally.
+                Task name
               </DialogContentText>
               <TextField
                 autoFocus
@@ -61,7 +61,8 @@ export default function AddItemDialog(){
                 fullWidth
                 onChange = {handleInputChange}
               />
-              <DialogContentText >
+              <DialogContentText>
+                <br></br>
                 Message
               </DialogContentText>
               <TextField
