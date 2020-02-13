@@ -7,7 +7,7 @@ import Home from './views/Home';
 import TestComponent from './views/TestComponent';
 import IndexList from './views/IndexList';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TodoList from './views/TodoListView'
+import TodoList from './views/KanbanBoardView'
 
 
 

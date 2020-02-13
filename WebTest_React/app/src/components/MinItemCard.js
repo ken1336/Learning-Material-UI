@@ -29,7 +29,9 @@ const useStyles = makeStyles({
 });
 
 export default function MinItemCard(props) {
+
   const renderCard = (id, name, message) => {
+
     return (
       <Card className={useStyles.root}>
         <CardContent>
@@ -55,7 +57,12 @@ export default function MinItemCard(props) {
   };
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD },
+    item: { type: ItemTypes.CARD, name:props.name, message:props.message,colName:props.colName },
+    begin: () => {
+      console.log(props.id,': drag')
+      props.moveCard(props)
+    },
+    end: t => console.log(props.id,' end:',t),
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
