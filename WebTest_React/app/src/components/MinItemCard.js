@@ -12,13 +12,15 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
     margin: "10px",
-
-    maxHeight: 500,
+    height: "100px",
+    
+    
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
-    transform: "scale(0.8)"
+    transform: "scale(0.8)",
+    
   },
   title: {
     fontSize: 14
@@ -33,7 +35,10 @@ export default function MinItemCard(props) {
   const renderCard = (id, name, message) => {
 
     return (
-      <Card className={useStyles.root}>
+      <Card style={{
+        borderRadius: "10px",
+        height: "100px"
+      }}>
         <CardContent>
           <Typography
             className={useStyles.title}
@@ -76,38 +81,11 @@ export default function MinItemCard(props) {
         fontSize: 25,
         fontWeight: "bold",
         cursor: isDragging ? "grab" : "grab",
-        background: "#ffffff",
-        margin: "10px"
+        margin: "5px",
+        height: "100px"
       }}
     >
       {renderCard(props.id, props.name, props.message)}
     </div>
   );
 }
-
-// export default function MinCard() {
-//   const classes = useStyles();
-//   const bull = <span className={classes.bullet}>•</span>;
-
-//   return (
-//     <Card className={classes.root}>
-//       <CardContent>
-//         <Typography className={classes.title} color="textSecondary" gutterBottom>
-//           Word of the Day
-//         </Typography>
-
-//         <Typography className={classes.pos} color="textSecondary">
-//           adjective
-//         </Typography>
-//         <Typography variant="body2" component="p">
-//           well meaning and kindly.
-//           <br />
-//           dfasdfasdfasdfasfasdf sdfa sdf asdf asdf asdf asf asdf asdf asdf asdf asdf asdf asf asdf asdf asdf asdf asdf asdf asf asdf asdf asdf asdf asdf asdf
-//         </Typography>
-//       </CardContent>
-//       <CardActions>
-//         <Button size="small">Learn More</Button>
-//       </CardActions>
-//     </Card>
-//   );
-// }

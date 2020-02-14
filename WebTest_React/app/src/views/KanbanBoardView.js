@@ -61,6 +61,21 @@ export default function Home() {
           <DndProvider backend={Backend}>
             <Paper className={classes.paper}>
               <Grid className={classes.test}>
+                Blocked
+                
+              </Grid>
+              <Grid>
+                
+                <MinTodoListBox id="blocked" />
+              </Grid>
+            </Paper>
+          </DndProvider>
+        </Grid>
+
+        <Grid item xs  >
+          <DndProvider backend={Backend}>
+            <Paper className={classes.paper}>
+              <Grid className={classes.test}>
                 Done
                 
               </Grid>
@@ -70,7 +85,6 @@ export default function Home() {
               </Grid>
             </Paper>
           </DndProvider>
-        
         </Grid>
       </Grid>
     </div>
