@@ -1,13 +1,16 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import MinCard from './MinItemCard'
 import MinAddItemDialog from "../components/MinAddItemDialog";
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './Constants'
-import { Button } from '@material-ui/core';
+import { Button, BottomNavigationAction } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+
+import { testAPICall } from '../store/actions/index';
 
 export default function MinTodoListBox(props) {
 
@@ -113,12 +116,27 @@ export default function MinTodoListBox(props) {
       console.log(newCard, "added");
     }
   )
+  const dispatch = useDispatch();
+  const TestData = useSelector(state => state.Testing, []);
+  const [test, setTest] = useState(TestData);
+  
+
+
+  const onTestAPICallHandler = ()  => {
+    
+    dispatch(testAPICall());
+    
+  }
 
 
   return (
     // <div
 
     <Grid ref={drop} style={{}}>
+      <Grid>
+        <Button onClick = {onTestAPICallHandler}>TestAPICall</Button>
+        {TestData.data}
+      </Grid>
       <Grid style={{
         display: "inline",
         textAlign: "right",
@@ -129,13 +147,10 @@ export default function MinTodoListBox(props) {
       <GridList cols={1} style={{
         }} >
           <GridListTile style={{
-
-           
             height: "100%",
             minHeight: "700px",
             maxHeight: "700px",
             overflow: 'scroll'
-
           }}>
             {cards.map(v => (
               <MinCard

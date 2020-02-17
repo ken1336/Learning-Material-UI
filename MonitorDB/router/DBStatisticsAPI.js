@@ -1,8 +1,7 @@
 var minDB = require("../module/OracleDB.js");
+    
 
-var express = require("express");
-const app = express();
-var router = express.Router();
+
 
 module.exports = router => {
   router.post("/GetIndexFragmentationRatioEx", async (req, res) => {
