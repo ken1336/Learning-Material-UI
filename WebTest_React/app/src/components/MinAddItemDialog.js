@@ -24,7 +24,7 @@ export default function AddItemDialog(props){
       
     }
     const handleInsertData = () =>{
-      console.log(data)
+     
       props.addCard(data)
       
     }
