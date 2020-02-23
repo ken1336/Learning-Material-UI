@@ -142,7 +142,7 @@ export default function MinTodoListBox(props) {
         textAlign: "right",
 
       }}>
-        <MinAddItemDialog addCard={addCard}>Add item</MinAddItemDialog>
+        <MinAddItemDialog addCard={addCard}>Add Card</MinAddItemDialog>
       </Grid>
       <GridList cols={1} style={{
         }} >
