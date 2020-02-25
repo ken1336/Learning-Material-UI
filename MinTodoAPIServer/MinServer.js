@@ -42,9 +42,9 @@ app.post("/getList",(req,res) =>{
   );
 
   
-  var sendData = cardDB.values();
-  
+  var sendData = Array.from(cardDB, ([key, value]) => `${key}:${value}`);
   console.log("sendData: ",sendData);
+
   res.send(cardDB);
 })
 .post("/put",(req,res) =>{

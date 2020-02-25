@@ -10,18 +10,13 @@ import { Button, BottomNavigationAction } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-import { testAPICall,putAPICall, FetchListAPICall } from '../store/actions/index';
+import { testAPICall,putAPICall, FetchListAPICall,cardCounterCall } from '../store/actions/index';
 
 export default function MinTodoListBox(props) {
 
   const [id, setId] = useState(props.id);
   const [cards, setCards] = useState([
-    {
-      id: 1,
-      name: 'name',
-      message: 'testesttest',
-      colName: props.id,
-    }
+    
   ]);
   const [input, setInput] = useState({
     name: '',
@@ -43,22 +38,14 @@ export default function MinTodoListBox(props) {
 
     )
   }
-  const nextId = useRef(2);
+  
   const addList = (newCard) => {
     setCards(cards.concat(newCard));
-    nextId.current += 1;
-    console.log(id, ": ", cards, nextId.current)
+    
+    console.log(id, "add list: ", cards )
   }
   const onCreate = () => {
-    const newCard = {
-      id: nextId.current,
-      name: input.name,
-      message: input.message,
-      colName: props.id,
-
-    };
-
-    addList(newCard);
+ 
 
   };
 
@@ -68,15 +55,15 @@ export default function MinTodoListBox(props) {
       const didDrop = monitor.didDrop();
 
       let result = monitor.getItem();
-
+      
       const newCard = {
-        id: nextId.current,
+        id: result.id,
         name: result.name,
         message: result.message,
         colName: props.id,
       };
       addList(newCard);
-      console.log(id, ": ", cards)
+     
       return item;
       if (didDrop) {
         return
@@ -91,22 +78,23 @@ export default function MinTodoListBox(props) {
 
   const moveCard = useCallback(
     async (movedCard) => {
-      console.log(movedCard, "will be removed");
+      console.log(id, movedCard, "will be removed",cards);
       const del = cards.findIndex(v => v.id === movedCard.id);
-      console.log('delete:', del)
+      console.log(id,' delete:', del,cards)
 
       await cards.splice(del, 1);
-      nextId.current -= 1;
-      await cards.map((v, i) => v.id = i + 1)
+      
+      // await cards.map((v, i) => v.id = i + 1)
     },
     [cards],
   )
 
   const addCard = useCallback(
     (addedCard) => {
-
+      dispatch(cardCounterCall())
+      
       const newCard = {
-        id: nextId.current,
+        id: cardID,
         name: addedCard.name,
         message: addedCard.message,
         colName: props.id,
@@ -114,11 +102,12 @@ export default function MinTodoListBox(props) {
       };
       addList(newCard);
       dispatch(putAPICall(newCard));
-      console.log(newCard, "added");
+      console.log(id,newCard, "added");
     }
   )
   const dispatch = useDispatch();
   const TestData = useSelector(state => state.Testing, []);
+  const cardID = useSelector(state => state.Count.id, []);
   const [test, setTest] = useState(TestData);
   
 
@@ -134,6 +123,7 @@ export default function MinTodoListBox(props) {
     // <div
 
     <Grid ref={drop} style={{}}>
+      
       <Grid>
         <Button onClick = {onTestAPICallHandler}>TestAPICall</Button>
         {TestData.data}

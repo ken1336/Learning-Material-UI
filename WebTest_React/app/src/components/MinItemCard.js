@@ -62,12 +62,12 @@ export default function MinItemCard(props) {
   };
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.CARD, name:props.name, message:props.message,colName:props.colName },
-    begin: () => {
+    item: { type: ItemTypes.CARD,id:props.id, name:props.name, message:props.message,colName:props.colName },
+    end: () => {
       console.log(props.id,': drag')
       props.moveCard(props)
     },
-    end: t => console.log(props.id,' end:',t),
+    //end: t => console.log(props.id,' end:',t),
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })

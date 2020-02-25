@@ -1,7 +1,11 @@
 import axios from 'axios'
+
+const API_URL = "10.253.8.188"
 export const TEST_API_CALL = 'test_api_call';
 export const PUT_API_CALL = "put_api_call";
 export const FETCH_API_CALL = "fetch_api_call";
+
+export const CARD_COUNTER = "card_counter";
 
 
 export const putAPICallData = (data) => {
@@ -24,12 +28,20 @@ export const testAPICallData = (data) => {
     }
 }
 
+export const cardCounter = (id) => {
+    return {
+        type: CARD_COUNTER,
+        id
+    }
+}
+
+
 
 export const putAPICall = (param) => {
-    console.log("param: ", param);
+    
 
     return(dispatch) =>{
-        return axios.post("http://localhost:3001/put",param)
+        return axios.post("http://"+API_URL+":3001/put",param)
         .then(response =>{
             dispatch(putAPICallData(response.data))
         })
@@ -41,10 +53,10 @@ export const putAPICall = (param) => {
 }
 
 export const FetchListAPICall = (param) => {
-    console.log("fetch ");
+    
 
     return(dispatch) =>{
-        return axios.post("http://localhost:3001/getList",param)
+        return axios.post("http://"+API_URL+":3001/getList",param)
         .then(response =>{
             dispatch(FetchListAPICallData(response.data))
         })
@@ -55,11 +67,11 @@ export const FetchListAPICall = (param) => {
     }
 }
 export const testAPICall = (param) => {
-    console.log('param: ', param);
+    
     return (dispatch) => {
-        return axios.post(`http://localhost:3001/TestAPI`, param)
+        return axios.post("http://"+API_URL+":3001/TestAPI", param)
             .then(response => {
-                console.log('response: ', response.data)
+                
                 dispatch(testAPICallData(response.data))
             })
             .catch(error => {
@@ -68,3 +80,5 @@ export const testAPICall = (param) => {
             });
     }
 }
+
+export const cardCounterCall = (id) => cardCounter(id);
