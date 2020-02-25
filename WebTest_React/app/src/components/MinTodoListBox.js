@@ -10,7 +10,7 @@ import { Button, BottomNavigationAction } from '@material-ui/core';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-import { testAPICall } from '../store/actions/index';
+import { testAPICall,putAPICall, FetchListAPICall } from '../store/actions/index';
 
 export default function MinTodoListBox(props) {
 
@@ -113,6 +113,7 @@ export default function MinTodoListBox(props) {
 
       };
       addList(newCard);
+      dispatch(putAPICall(newCard));
       console.log(newCard, "added");
     }
   )
@@ -124,7 +125,7 @@ export default function MinTodoListBox(props) {
 
   const onTestAPICallHandler = ()  => {
     
-    dispatch(testAPICall());
+    dispatch(FetchListAPICall());
     
   }
 

@@ -1,5 +1,6 @@
 import { TEST_API_CALL } from "../actions/index";
 
+
 const initialState = {
     data: "",
 }
@@ -12,7 +13,6 @@ export default function TestAPICallReducer(state = initialState, action) {
         ...state,
         data: action.data
       };
-
     default:{
         console.log('state:', state)
         return state
