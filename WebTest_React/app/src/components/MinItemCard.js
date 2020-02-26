@@ -61,15 +61,23 @@ export default function MinItemCard(props) {
     );
   };
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging,didDrop,dropResult,canDrop }, drag] = useDrag({
     item: { type: ItemTypes.CARD,id:props.id, name:props.name, message:props.message,colName:props.colName },
-    end: () => {
+    begin: () => {
       console.log(props.id,': drag')
-      props.moveCard(props)
+      
     },
     //end: t => console.log(props.id,' end:',t),
+
+    end: (item, monitor)=>{
+        console.log("drop result:",monitor.getDropResult())
+        if(monitor.getDropResult())
+          props.moveCard(item)
+    },
     collect: monitor => ({
-      isDragging: !!monitor.isDragging()
+      isDragging: !!monitor.isDragging(),
+      
+      
     })
   });
 

@@ -1,6 +1,8 @@
 import axios from 'axios'
+import hostURL from "../../Config"
 
-const API_URL = "10.253.8.188"
+
+const API_URL = hostURL.hostURL;
 export const TEST_API_CALL = 'test_api_call';
 export const PUT_API_CALL = "put_api_call";
 export const FETCH_API_CALL = "fetch_api_call";

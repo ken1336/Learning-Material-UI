@@ -35,26 +35,29 @@ export default function Home() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs   >
-          <DndProvider backend={Backend}>
+          
             <Paper className={classes.paper}>
               To do
+              <DndProvider backend={Backend}>
               <MinTodoListBox id="toDo" />
+              </DndProvider>
             </Paper>
-          </DndProvider>
+          
         </Grid>
         <Grid item xs  >
-          <DndProvider backend={Backend}>
+          
             <Paper className={classes.paper}>
               <Grid className={classes.test}>
                 In progress
                 
               </Grid>
               <Grid>
-                
+              <DndProvider backend={Backend}>
                 <MinTodoListBox id="inProgress" />
+                </DndProvider>
               </Grid>
             </Paper>
-          </DndProvider>
+          
         </Grid>
        
         <Grid item xs  >

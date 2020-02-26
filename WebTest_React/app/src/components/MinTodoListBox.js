@@ -40,9 +40,9 @@ export default function MinTodoListBox(props) {
   }
   
   const addList = (newCard) => {
-    setCards(cards.concat(newCard));
+    //setCards(cards.concat(newCard));
+    setCards([...cards,newCard])
     
-    console.log(id, "add list: ", cards )
   }
   const onCreate = () => {
  
@@ -52,6 +52,9 @@ export default function MinTodoListBox(props) {
   const [{ isOver, isOverCurrent }, drop] = useDrop({
     accept: ItemTypes.CARD,
     drop(item, monitor) {
+
+      
+        
       const didDrop = monitor.didDrop();
 
       let result = monitor.getItem();
@@ -62,12 +65,12 @@ export default function MinTodoListBox(props) {
         message: result.message,
         colName: props.id,
       };
+      console.log(id+" will add ", newCard)
       addList(newCard);
+      
      
       return item;
-      if (didDrop) {
-        return
-      }
+      
     },
 
     collect: monitor => ({
@@ -78,15 +81,19 @@ export default function MinTodoListBox(props) {
 
   const moveCard = useCallback(
     async (movedCard) => {
-      console.log(id, movedCard, "will be removed",cards);
+      
       const del = cards.findIndex(v => v.id === movedCard.id);
-      console.log(id,' delete:', del,cards)
-
-      await cards.splice(del, 1);
+      console.log(id,' delete:',movedCard, del)
+      
+       
+      setCards(cards.splice(del, 1));
+      console.log(id,' list:',cards)
+      //
+      
       
       // await cards.map((v, i) => v.id = i + 1)
     },
-    [cards],
+    
   )
 
   const addCard = useCallback(
@@ -102,7 +109,7 @@ export default function MinTodoListBox(props) {
       };
       addList(newCard);
       dispatch(putAPICall(newCard));
-      console.log(id,newCard, "added");
+      
     }
   )
   const dispatch = useDispatch();
