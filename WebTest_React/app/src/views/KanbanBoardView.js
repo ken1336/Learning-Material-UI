@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import MinTodoListBox from "../components/MinTodoListBox";
-import MinCard from "../components/MinItemCard";
+import MinTodoListBox from "../components/MinTodoList/container/MinTodoListContainer";
+
 import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
-import MinAddItemDialog from "../components/MinAddItemDialog";
+
 
 const useStyles = makeStyles(theme => ({
   root: {

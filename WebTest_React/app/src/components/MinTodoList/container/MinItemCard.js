@@ -6,8 +6,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useDrag } from "react-dnd";
-import { ItemTypes } from "./Constants";
-import Grid from "@material-ui/core/Grid";
+import { ItemTypes } from "../../Constants";
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -64,15 +64,18 @@ export default function MinItemCard(props) {
   const [{ isDragging,didDrop,dropResult,canDrop }, drag] = useDrag({
     item: { type: ItemTypes.CARD,id:props.id, name:props.name, message:props.message,colName:props.colName },
     begin: () => {
-      console.log(props.id,': drag')
+
       
     },
     //end: t => console.log(props.id,' end:',t),
 
     end: (item, monitor)=>{
-        console.log("drop result:",monitor.getDropResult())
-        if(monitor.getDropResult())
-          props.moveCard(item)
+
+        if(monitor.getDropResult()){
+          if(monitor.getDropResult().id!==null)
+            props.moveCard(item)
+        }
+        
     },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
