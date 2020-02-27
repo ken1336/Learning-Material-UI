@@ -5,7 +5,7 @@ import CardAPICallReducer from './CardAPICall';
 import CardCount from './CardCount';
 const rootReducer = combineReducers({
     Testing: TestAPICallReducer,
-    CardIO:CardAPICallReducer,
+    CardData:CardAPICallReducer,
     Count:CardCount,
   });
   

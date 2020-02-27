@@ -19,6 +19,7 @@ const app = express();
 
 // })();
 
+//var cardDB  = new Map();
 var cardDB  = new Map();
 app.listen(3001, () => {
   console.log('Min api server listening on port 3001!');
@@ -43,15 +44,15 @@ app.post("/getList",(req,res) =>{
 
   
   var sendData = Array.from(cardDB, ([key, value]) => `${key}:${value}`);
-  console.log("sendData: ",sendData);
+  console.log("sendData: ",cardDB);
 
   res.send(cardDB);
 })
 .post("/put",(req,res) =>{
 
-  console.log(req.body);
-  cardDB.set(req.body.id,req.body);
-  console.log(cardDB.values());
+  console.log("put:",req.body);
+  cardDB.set(cardDB.size,req.body);
+  console.log(cardDB);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header(
@@ -60,6 +61,23 @@ app.post("/getList",(req,res) =>{
   );
 
   res.send("ok");
+
+})
+.post("/getCardCount",(req,res) =>{
+
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+  
+
+  const obj = {"cardCount": cardDB.size}
+  const cardCount = JSON.stringify(obj);
+  console.log("card count:",cardCount);
+  res.send(cardCount);
 
 })
 .post("/TestAPI",(req,res)=>{

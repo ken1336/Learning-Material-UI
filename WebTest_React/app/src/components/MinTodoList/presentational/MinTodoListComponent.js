@@ -1,5 +1,5 @@
 import React from "react";
-import MinCard from "../container/MinItemCard";
+import MinCard from "../container/MinItemCardContainer";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 
@@ -14,10 +14,10 @@ export default function MinTodoListBox(props) {
           overflow: "scroll"
         }}
       >
-        {props.cards.map(v => (
+        {props.cards.map((v,i) => (
           <MinCard
-            key={v.id}
-            id={v.id}
+            key={i}
+            id={i}
             name={v.name}
             message={v.message}
             colName={v.colName}

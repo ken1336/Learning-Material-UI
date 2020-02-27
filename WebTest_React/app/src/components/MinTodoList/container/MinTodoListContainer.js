@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-
+import Button from "@material-ui/core/Button";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "../../Constants";
 
@@ -18,30 +18,34 @@ import {
 export default function MinTodoListBox(props) {
   const [id, setId] = useState(props.id);
   const [cards, setCards] = useState([]);
-  const [input, setInput] = useState({
-    name: "",
-    message: ""
-  });
   const dispatch = useDispatch();
-  const TestData = useSelector(state => state.Testing, []);
-  const cardID = useSelector(state => state.Count.id, []);
-  const [test, setTest] = useState(TestData);
+  const cardData = useSelector(state => state.CardData, []);
 
+
+
+  useEffect(()=>{
+    
+    dispatch(FetchListAPICall());
+    
+  },[]);
 
   const addList = newCard => {
-    //setCards(cards.concat(newCard));
     setCards([...cards, newCard]);
+    
   };
   
 
   const [{ isOver, isOverCurrent }, drop] = useDrop({
     accept: ItemTypes.CARD,
     drop(item, monitor) {
-      if (item.colName === id) return { id: null };
+      console.log(item.colName,id)
+      if (item.colName === id) {
+        return { id: null };
+      }
       let result = monitor.getItem();
 
       const newCard = {
-        id: result.id,
+        id: cards.length,
         name: result.name,
         message: result.message,
         colName: props.id
@@ -58,36 +62,41 @@ export default function MinTodoListBox(props) {
 
 
   const moveCard = useCallback(async movedCard => {
+    console.log(movedCard.id,cards)
     setCards(
       cards.filter(v => {
-        return v.id !== movedCard.id;
+        return v.id !== movedCard.id ;
       })
     );
   });
 
   const addCard = useCallback(addedCard => {
-    dispatch(cardCounterCall());
 
     const newCard = {
-      id: cardID,
+      id: cards.length,
       name: addedCard.name,
       message: addedCard.message,
       colName: props.id
     };
-
-    addList(newCard);
     dispatch(putAPICall(newCard));
+    addList(newCard);
+    
   });
 
 
-  // const onTestAPICallHandler = () => {
-  //   dispatch(FetchListAPICall());
-  // };
+  const onTestAPICallHandler = () => {
+    //dispatch(FetchListAPICall());
+    dispatch(FetchListAPICall());
+    console.log(cardData);
+    //setCards(cardData.data.filter(v=>v.colName ===id))
+    //console.log(cards)
+  };
 
   return (
     // <div
 
     <Grid ref={drop}>
+      <Button onClick ={onTestAPICallHandler} >button</Button>
       <MinAddItemDialogComponent addCard={addCard}></MinAddItemDialogComponent>
 
       <MinTodoListComponent

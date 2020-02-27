@@ -44,6 +44,7 @@ export const putAPICall = (param) => {
 
     return(dispatch) =>{
         return axios.post("http://"+API_URL+":3001/put",param)
+        
         .then(response =>{
             dispatch(putAPICallData(response.data))
         })
@@ -60,6 +61,7 @@ export const FetchListAPICall = (param) => {
     return(dispatch) =>{
         return axios.post("http://"+API_URL+":3001/getList",param)
         .then(response =>{
+            
             dispatch(FetchListAPICallData(response.data))
         })
         .catch(error =>{
@@ -83,4 +85,16 @@ export const testAPICall = (param) => {
     }
 }
 
-export const cardCounterCall = (id) => cardCounter(id);
+export const cardCounterCall = () => {
+    return (dispatch) => {
+        return axios.post("http://"+API_URL+":3001/getCardCount")
+            .then(response => {
+                //console.log("response.data.cardCount:",response.data.cardCount)
+                dispatch(cardCounter(response.data.cardCount))
+            })
+            .catch(error => {
+                console.log("calling api error", error);
+                throw (error);
+            });
+    }
+}

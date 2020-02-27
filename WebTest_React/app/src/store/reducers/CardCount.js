@@ -10,7 +10,7 @@ export default function CardCountReducer(state = initialState, action) {
         
         return{
             ...state,
-            id: state.id+1,
+            id: action.id,
           }
       default:
         return state
