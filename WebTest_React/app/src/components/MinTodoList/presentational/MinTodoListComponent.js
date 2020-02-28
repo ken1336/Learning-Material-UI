@@ -16,8 +16,8 @@ export default function MinTodoListBox(props) {
       >
         {props.cards.map((v,i) => (
           <MinCard
-            key={i}
-            id={i}
+            keys={i}
+            id={v.id}
             name={v.name}
             message={v.message}
             colName={v.colName}

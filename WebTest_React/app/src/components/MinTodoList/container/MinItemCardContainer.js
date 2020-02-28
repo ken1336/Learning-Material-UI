@@ -12,7 +12,7 @@ import MinItemCardComponent from "../presentational/MinItemCardComponent";
 
 export default function MinItemCard(props) {
   const cardID = props.id;
-  const [{ isDragging, didDrop, dropResult, canDrop }, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     item: {
       type: ItemTypes.CARD,
       id: cardID,
@@ -21,14 +21,7 @@ export default function MinItemCard(props) {
       colName: props.colName
     },
     begin: () => {},
-    end: (item, monitor) => {
-      if (monitor.getDropResult()) {
-        if (monitor.getDropResult().id !== null){
-          console.log(item)
-          props.moveCard(item);
-        } 
-      }
-    },
+ 
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })

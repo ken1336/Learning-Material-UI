@@ -12,7 +12,7 @@ import MinAddItemDialogComponent from "../presentational/MinAddItemDialogCompone
 import {
   putAPICall,
   FetchListAPICall,
-  cardCounterCall
+  moveAPICall
 } from "../../../store/actions";
 
 export default function MinTodoListBox(props) {
@@ -29,29 +29,29 @@ export default function MinTodoListBox(props) {
     
   },[]);
 
-  const addList = newCard => {
-    setCards([...cards, newCard]);
+  // const addList = newCard => {
+  //   setCards([...cards, newCard]);
     
-  };
+  // };
   
 
   const [{ isOver, isOverCurrent }, drop] = useDrop({
     accept: ItemTypes.CARD,
     drop(item, monitor) {
-      console.log(item.colName,id)
+     
       if (item.colName === id) {
         return { id: null };
       }
       let result = monitor.getItem();
-
-      const newCard = {
-        id: cards.length,
+      
+      const moveCard = {
+        id: result.id,
         name: result.name,
         message: result.message,
         colName: props.id
       };
-
-      addList(newCard);
+      
+      dispatch(moveAPICall(moveCard));
       return item;
     },
     collect: monitor => ({
@@ -62,7 +62,7 @@ export default function MinTodoListBox(props) {
 
 
   const moveCard = useCallback(async movedCard => {
-    console.log(movedCard.id,cards)
+    
     setCards(
       cards.filter(v => {
         return v.id !== movedCard.id ;
@@ -73,15 +73,32 @@ export default function MinTodoListBox(props) {
   const addCard = useCallback(addedCard => {
 
     const newCard = {
-      id: cards.length,
+      id:null,
       name: addedCard.name,
       message: addedCard.message,
       colName: props.id
     };
     dispatch(putAPICall(newCard));
-    addList(newCard);
+    
     
   });
+  useEffect(v=>{
+
+    
+    
+    if(cardData.data)
+    {
+      const newCards = cardData.data.filter(v=>{
+        
+        return v.colName === id
+      });
+      setCards(newCards);
+      console.log(id,"cards: ",cards,"cardData: ",cardData.data);
+      
+    }
+  
+    //addList(cardData);
+  },[cardData])
 
 
   const onTestAPICallHandler = () => {
