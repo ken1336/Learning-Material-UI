@@ -34,7 +34,7 @@ app
 
 app.post("/getList",(req,res) =>{
 
-  console.log(req.body);
+  
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header(
@@ -43,24 +43,45 @@ app.post("/getList",(req,res) =>{
   );
 
   
-  var sendData = Array.from(cardDB, ([key, value]) => `${key}:${value}`);
-  console.log("sendData: ",cardDB);
+  
+  var sendData = Array.from(cardDB.values());
+  console.log("db:",cardDB.values());
+  console.log("sendData: ",sendData);
 
-  res.send(cardDB);
+  res.send(sendData);
 })
-.post("/put",(req,res) =>{
+.post("/move",(req,res) =>{
 
-  console.log("put:",req.body);
-  cardDB.set(cardDB.size,req.body);
-  console.log(cardDB);
+  console.log("move:",req.body);
+  
+  cardDB.set(req.body.id,req.body);
+
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization, Content-Length, X-Requested-With"
   );
+  console.log("db:",cardDB.values());
+  var sendData = Array.from(cardDB.values());
+  res.send(sendData);
 
-  res.send("ok");
+})
+.post("/put",(req,res) =>{
+
+  console.log("put:",req.body);
+  req.body.id = cardDB.size;
+  cardDB.set(cardDB.size,req.body);
+  console.log(cardDB);
+  console.log("send: ",req.body);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+  var sendData = Array.from(cardDB.values());
+  res.send(sendData);
 
 })
 .post("/getCardCount",(req,res) =>{
