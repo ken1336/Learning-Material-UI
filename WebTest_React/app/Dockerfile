@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 COPY . .
-CMD ["npm", "run","build"]
+RUN npm run-script build
 
 FROM nginx:1.13.9-alpine AS deploy
 RUN rm -rf /etc/nginx/conf.d

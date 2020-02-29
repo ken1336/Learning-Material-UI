@@ -54,7 +54,7 @@ app.post("/getList",(req,res) =>{
 
   console.log("remove:",req.body);
   
-  cardDB.delete(req.body.ids);
+  cardDB.delete(req.body.id);
 
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
@@ -63,7 +63,7 @@ app.post("/getList",(req,res) =>{
     "Content-Type, Authorization, Content-Length, X-Requested-With"
   );
   console.log("db:",cardDB.values());
-  var sendData = Array.from(cardDB.s());
+  var sendData = Array.from(cardDB.values());
   res.send(sendData);
 
 })

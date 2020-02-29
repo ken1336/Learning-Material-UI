@@ -9,7 +9,7 @@ import { useDrag } from "react-dnd";
 import { ItemTypes } from "../../Constants";
 import { useDispatch } from "react-redux";
 import MinItemCardComponent from "../presentational/MinItemCardComponent";
-import { removeAPICallData } from "../../../store/actions";
+import { removeAPICall } from "../../../store/actions";
 
 export default function MinItemCard(props) {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function MinItemCard(props) {
       message: props.message,
       colName: props.colName
     }
-    dispatch(removeAPICallData(delCard));
+    dispatch(removeAPICall(delCard));
   }
   return (
     <div

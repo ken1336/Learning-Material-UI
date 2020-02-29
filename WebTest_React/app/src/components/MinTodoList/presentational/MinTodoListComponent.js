@@ -14,7 +14,7 @@ export default function MinTodoListBox(props) {
           overflow: "scroll"
         }}
       >
-        <ExpansionPanel>
+        
         {props.cards.map((v,i) => (
           <MinCard
             key={i}
@@ -25,7 +25,7 @@ export default function MinTodoListBox(props) {
             moveCard={props.event}
           ></MinCard>
         ))}
-        </ExpansionPanel>
+        
       </GridListTile>
     </GridList>
   );

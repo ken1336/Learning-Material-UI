@@ -8,12 +8,10 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 
-
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // const useStyles = makeStyles({
 //   root: {
 //     minWidth: 275,
@@ -45,32 +43,34 @@ const useStyles = makeStyles(theme => ({
 export default function MinItemCardComponent(props) {
   const classes = useStyles();
   return (
-    
-    <div>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
+
+    <Paper style={{height: "100px"}}>
+      <Grid >
+        <div style={{ padding: "5px", fontSize: 15}}>
+          {props.name?props.name:"..."}
         </div>
-  );
-      
-      
+        <div style={{textAlign: "left", paddingLeft: "10px"}}>
+          {props.message}
+        </div>
+        
+
+      </Grid>
+      <Grid>
+      <div style={{textAlign: "right"}}>
+          <IconButton size="small" aria-label="delete" onClick = {props.remove}>
+            <DeleteIcon />
+          </IconButton>
+        </div>
+        </Grid>
+    </Paper>
+
     // <Card
     //   style={{
     //     borderRadius: "10px",
     //     height: "100px"
     //   }}
     // >
-      
+
     //   <CardContent style={{padding : "4px"}}>
 
     //   {/* <Typography variant="body2" > */}
@@ -79,14 +79,17 @@ export default function MinItemCardComponent(props) {
     //       <br />
     //       {props.message}
     //     </Typography>
-  
-       
-        
+
+
+
     //   </CardContent>
 
     //   <Typography >      <IconButton size = "small" aria-label="delete">
     //     <DeleteIcon />
     //   </IconButton></Typography>
     // </Card>
-  
+
+  );
+
+
 }
