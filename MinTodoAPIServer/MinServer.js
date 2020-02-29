@@ -50,6 +50,24 @@ app.post("/getList",(req,res) =>{
 
   res.send(sendData);
 })
+.post("/remove",(req,res) =>{
+
+  console.log("remove:",req.body);
+  
+  cardDB.delete(req.body.ids);
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+  console.log("db:",cardDB.values());
+  var sendData = Array.from(cardDB.s());
+  res.send(sendData);
+
+})
+
 .post("/move",(req,res) =>{
 
   console.log("move:",req.body);

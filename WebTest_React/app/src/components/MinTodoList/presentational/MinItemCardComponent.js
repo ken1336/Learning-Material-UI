@@ -5,52 +5,88 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-const useStyles = makeStyles({
+
+
+
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// const useStyles = makeStyles({
+//   root: {
+//     minWidth: 275,
+//     margin: "1px",
+//     height: "150px"
+//   },
+//   bullet: {
+//     display: "inline-block",
+//     margin: "0 1px",
+//     transform: "scale(0.8)"
+//   },
+//   title: {
+//     fontSize: 14
+//   },
+//   pos: {
+//     marginBottom: 12
+//   }
+// });
+
+const useStyles = makeStyles(theme => ({
   root: {
-    minWidth: 275,
-    margin: "10px",
-    height: "100px"
+    width: '100%',
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
   },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  }
-});
-
+}));
 export default function MinItemCardComponent(props) {
+  const classes = useStyles();
   return (
-    <Card
-      style={{
-        borderRadius: "10px",
-        height: "100px"
-      }}
-    >
-      <CardContent>
-        <Typography
-          className={useStyles.title}
-          color="textSecondary"
-          gutterBottom
+    
+    <div>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          {props.id}
-        </Typography>
-
-        <Typography variant="body2" component="p">
-          {props.name}
-          <br />
-          {props.message}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+          <Typography className={classes.heading}>Expansion Panel 1</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </Typography>
+        </ExpansionPanelDetails>
+        </div>
   );
+      
+      
+    // <Card
+    //   style={{
+    //     borderRadius: "10px",
+    //     height: "100px"
+    //   }}
+    // >
+      
+    //   <CardContent style={{padding : "4px"}}>
+
+    //   {/* <Typography variant="body2" > */}
+    //   <Typography >
+    //       {props.name}
+    //       <br />
+    //       {props.message}
+    //     </Typography>
+  
+       
+        
+    //   </CardContent>
+
+    //   <Typography >      <IconButton size = "small" aria-label="delete">
+    //     <DeleteIcon />
+    //   </IconButton></Typography>
+    // </Card>
+  
 }

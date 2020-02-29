@@ -7,10 +7,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "../../Constants";
-
+import { useDispatch } from "react-redux";
 import MinItemCardComponent from "../presentational/MinItemCardComponent";
+import { removeAPICallData } from "../../../store/actions";
 
 export default function MinItemCard(props) {
+  const dispatch = useDispatch();
   const cardID = props.id;
   const [{ isDragging }, drag] = useDrag({
     item: {
@@ -26,16 +28,24 @@ export default function MinItemCard(props) {
       isDragging: !!monitor.isDragging()
     })
   });
-
+  const removeEventHandler  =()=> {
+    const delCard ={
+      id: cardID,
+      name: props.name,
+      message: props.message,
+      colName: props.colName
+    }
+    dispatch(removeAPICallData(delCard));
+  }
   return (
     <div
       ref={drag}
       style={{
         opacity: isDragging ? 0.5 : 1,
-        fontSize: 25,
+        fontSize: 10,
         fontWeight: "bold",
         cursor: isDragging ? "grab" : "grab",
-        margin: "5px",
+        margin: "2px",
         height: "100px"
       }}
     >
@@ -43,6 +53,7 @@ export default function MinItemCard(props) {
         id={cardID}
         name={props.name}
         message={props.message}
+        remove = {removeEventHandler}
       ></MinItemCardComponent>
     </div>
   );
