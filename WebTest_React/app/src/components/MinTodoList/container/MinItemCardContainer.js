@@ -23,7 +23,6 @@ export default function MinItemCard(props) {
       colName: props.colName
     },
     begin: () => {},
- 
     collect: monitor => ({
       isDragging: !!monitor.isDragging()
     })
