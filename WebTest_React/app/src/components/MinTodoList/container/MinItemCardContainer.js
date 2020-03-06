@@ -37,23 +37,17 @@ export default function MinItemCard(props) {
     dispatch(removeAPICall(delCard));
   }
   return (
-    <div
-      ref={drag}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        fontSize: 10,
-        fontWeight: "bold",
-        cursor: isDragging ? "grab" : "grab",
-        margin: "2px",
-        height: "100px"
-      }}
-    >
+  
       <MinItemCardComponent
         id={cardID}
         name={props.name}
         message={props.message}
         remove = {removeEventHandler}
+
+        drag = {drag}
+        isDragging = {isDragging}
+
       ></MinItemCardComponent>
-    </div>
+    
   );
 }

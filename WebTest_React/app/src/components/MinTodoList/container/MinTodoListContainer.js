@@ -24,15 +24,8 @@ export default function MinTodoListBox(props) {
 
 
   useEffect(() => {
-
     dispatch(FetchListAPICall());
-
   }, []);
-
-  // const addList = newCard => {
-  //   setCards([...cards, newCard]);
-
-  // };
 
 
   const [{ isOver, isOverCurrent }, drop] = useDrop({
@@ -80,18 +73,13 @@ export default function MinTodoListBox(props) {
 
 
   });
+
   useEffect(v => {
 
-
-
     if (cardData.data) {
-      const newCards = cardData.data.filter(v =>v.colName === id);
+      const newCards = cardData.data.filter(v => v.colName === id);
       setCards(newCards);
-      console.log(id, "cards: ", cards, "cardData: ", cardData.data);
-
     }
-
-  
   }, [cardData])
 
 

@@ -12,25 +12,6 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 
-// const useStyles = makeStyles({
-//   root: {
-//     minWidth: 275,
-//     margin: "1px",
-//     height: "150px"
-//   },
-//   bullet: {
-//     display: "inline-block",
-//     margin: "0 1px",
-//     transform: "scale(0.8)"
-//   },
-//   title: {
-//     fontSize: 14
-//   },
-//   pos: {
-//     marginBottom: 12
-//   }
-// });
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -43,6 +24,18 @@ const useStyles = makeStyles(theme => ({
 export default function MinItemCardComponent(props) {
   const classes = useStyles();
   return (
+
+     <div
+      ref={props.drag}
+      style={{
+        opacity: props.isDragging ? 0.5 : 1,
+        fontSize: 10,
+        fontWeight: "bold",
+        cursor: props.isDragging ? "grab" : "grab",
+        margin: "2px",
+        height: "100px"
+      }}
+    >    
 
     <Paper style={{height: "100px"}}>
       <Grid >
@@ -64,32 +57,6 @@ export default function MinItemCardComponent(props) {
         </Grid>
     </Paper>
 
-    // <Card
-    //   style={{
-    //     borderRadius: "10px",
-    //     height: "100px"
-    //   }}
-    // >
-
-    //   <CardContent style={{padding : "4px"}}>
-
-    //   {/* <Typography variant="body2" > */}
-    //   <Typography >
-    //       {props.name}
-    //       <br />
-    //       {props.message}
-    //     </Typography>
-
-
-
-    //   </CardContent>
-
-    //   <Typography >      <IconButton size = "small" aria-label="delete">
-    //     <DeleteIcon />
-    //   </IconButton></Typography>
-    // </Card>
-
+    </div>
   );
-
-
 }
