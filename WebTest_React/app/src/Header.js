@@ -7,7 +7,7 @@ class Header extends Component{
             <div className="header">
             <NavLink exact to="/" className="item" activeClassName="active">Home</NavLink>
             <NavLink exact to="/TestComponent" className="item" activeClassName="active">TestComponent</NavLink>
-            <NavLink exact to="/IndexList" className="item" activeClassName="active">IndexList</NavLink>
+            <NavLink exact to="/Calendar" className="item" activeClassName="active">Calendar</NavLink>
             <NavLink exact to="/TodoList" className="item" activeClassName="active">TodoList</NavLink>
             </div>
         );
