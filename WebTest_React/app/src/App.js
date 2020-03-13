@@ -8,7 +8,7 @@ import TestComponent from './views/TestComponent';
 import IndexList from './views/IndexList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TodoList from './views/KanbanBoardView'
-import MinCalendar from './views/MinCalendar';
+import MinCalendarView from './views/MinCalendarView';
 
 
 
@@ -22,7 +22,7 @@ function App() {
         <Switch>
           <Route exact path="/" component = {Home}/>
           <Route exact path="/TestComponent" component = {TestComponent}/>
-          <Route exact path="/Calendar" component = {MinCalendar}/>
+          <Route exact path="/MinCalendarView" component = {MinCalendarView}/>
           <Route exact path="/TodoLIst" component = {TodoList}/>
         </Switch>
       </div>
