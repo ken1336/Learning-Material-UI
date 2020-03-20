@@ -20,6 +20,7 @@ export default function MinCalendarComponent(props) {
                 //eventClick={testEvent}
                 editable="true"
                 droppable="true"
+                eventDrop={props.dropEvent}
             />
         </div>
     );
